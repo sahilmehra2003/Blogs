@@ -9,16 +9,15 @@ Let’s understand why version control exists by looking at how developers share
 
 ## Phase 1 (The Pen drive Story)
 
-  
-A solo developer starts building an e-commerce website. Initially, all parts of the project are handled by the developer himself. As the project grows, he soon realizes that building a complete e-commerce platform alone is a heavy burden. To reduce this load, he decides to hire a freelance developer to handle specific tasks such as payment gateway integration, traffic load management, and other responsibilities he wants to delegate.  
-  
-To share the current codebase, the main developer creates a zip file of the project named “e-commerce\_project.zip” and sends it to the freelancer. The freelancer completes the assigned tasks, updates the codebase, and sends back another zip file—let’s call it “*e-commerce\_project\_final.zip”*.  
-  
+A solo developer starts building an e-commerce website. Initially, all parts of the project are handled by the developer himself. As the project grows, he soon realizes that building a complete e-commerce platform alone is a heavy burden. To reduce this load, he decides to hire a freelance developer to handle specific tasks such as payment gateway integration, traffic load management, and other responsibilities he wants to delegate.
+
+To share the current codebase, the main developer creates a zip file of the project named “e-commerce\_project.zip” and sends it to the freelancer. The freelancer completes the assigned tasks, updates the codebase, and sends back another zip file—let’s call it “*e-commerce\_project\_final.zip”*.
+
 The main developer extracts the updated project and runs the application, only to find his terminal filled with errors. Features that were previously working correctly start failing, and debugging becomes difficult. With no clear visibility into what changes were made, the developer has to contact the freelancer and manually go through the codebase to understand what went wrong. The story ends there.
 
-Even though such a failure may not happen every time, this scenario gives us a clear idea of the potential problems with this approach. Let’s break them down. If you notice any that I missed, feel free to mention them in the comments.  
+Even though such a failure may not happen every time, this scenario gives us a clear idea of the potential problems with this approach. Let’s break them down. If you notice any that I missed, feel free to mention them in the comments.
 
-### Drawbacks List  
+### Drawbacks List
 
 * Slow collaboration: No parallel development is possible; only one developer can effectively work at a time.
     
@@ -53,42 +52,30 @@ Such a system could record basic but important information like:
 4. Why the changes were made (using developer-written messages)
     
 
-Once a developer completes their assigned task, they can share the updated codebase along with this change history file. The other developer can then continue working on the project and repeat the same process.  
-  
+Once a developer completes their assigned task, they can share the updated codebase along with this change history file. The other developer can then continue working on the project and repeat the same process.
+
 How CTS Solves Problems From Phase 1
 
 Let’s now analyze how introducing this **single variable (CTS)** impacts the problems we identified earlier.
 
-### Problems That Are Solved
+### The Scorecard: CTS vs. The Problems
 
-1 ) No codebase history
+###   
+Solved
 
-This issue is now solved.  
-Since CTS records every change, the project now has a **reliable and traceable history** of updates.
+* **Codebase History:** Since CTS records every change, we finally have a reliable timeline of updates.
+    
+* **Rollback Mechanism:** We can now identify and revert to stable versions because we track who, when, and why.
+    
 
-2) No rollback mechanism
+### STILL BROKEN
 
-This problem is also addressed.  
-Because CTS tracks **who made the change, when it was made, and why it was made**, identifying a stable version of the code becomes much easier.
-
-### Problems That Are Still Not Solved
-
-Even though CTS improves visibility and tracking, some major problems still remain.
-
-1 ) Slow collaboration
-
-Despite having a local CTS, developers still need to share the entire codebase using zip files or pen drives.  
-This means **only one developer can work on the project at a time**, so collaboration is still slow.
-
-2 ) Does not scale
-
-Since parallel development is not possible, this approach **breaks down as the team grows**.  
-Working efficiently with multiple developers is still not feasible.
-
-3 ) No single source of truth
-
-Developers still need to create multiple zip files before sharing their work.  
-As a result, versions like final, final\_v2, latest, and so on continue to exist, making it unclear which version is the correct one.
+* **Slow Collaboration:** We are still passing zip files around. Parallel work is impossible.
+    
+* **No Single Source of Truth:** We still have final\_v1.zip and final\_v2.zip floating around different computers.
+    
+* **Scaling:** As the team grows, this manual sharing process falls apart.
+    
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768653297151/de13a677-1163-43ff-bdb1-774b23933afd.png align="center")
 
@@ -122,22 +109,11 @@ This central system becomes the **single, agreed-upon version of the project**.
 
 Let’s revisit the problems we could not solve in Phase 2 and see how this change fixes them.
 
-1) Slow collaboration — solved
+* **Slow Collaboration & Scaling: SOLVED.** Because the server is always available, developers don't have to wait for each other. Parallel development is now possible, whether you have 2 developers or 200.
+    
 
-Since the codebase and its history now live on a shared server, developers no longer need to wait for zip files or pen drives.  
-Multiple developers can work independently and synchronize their changes through the central system.
-
-Parallel development becomes possible.
-
-2) Does not scale — solved
-
-With a shared codebase and structured change tracking, adding more developers no longer breaks the workflow.  
-Teams can grow without creating chaos, making this approach suitable for real-world software development.
-
-3) No single source of truth — solved
-
-The codebase stored on the central server becomes the **single source of truth**.  
-Every developer pushes changes to the same place and pulls updates from the same place, eliminating confusion caused by multiple “final” versions.
+* **Single Source of Truth: SOLVED.** There is no more confusion about which version is "final." If it’s on the server, it is the truth.
+    
 
 ### What We’ve Built So Far
 
@@ -155,3 +131,8 @@ This combined system is what we formally call a **Version Control System (VCS)**
 When this system is backed by a shared server, it is commonly referred to as a **remote version control system**.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768653772418/87bd6a44-e757-4272-aaf3-570f8e559ef5.png align="center")
+
+In this blog, we focused on *why* version control exists.  
+In the next blog, we’ll formally define a Version Control System (VCS), look at its key features, and understand why **Git** is the most widely used VCS today.
+
+**Up next:** *Git for Beginners: Basics and Essential Commands*
